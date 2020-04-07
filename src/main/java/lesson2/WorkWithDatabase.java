@@ -29,9 +29,14 @@ public class WorkWithDatabase {
             idNameScore = splitArrayList(updateData, i);
             for (int j = 0; j <idNameScore.length ; j++) {
                 //updateScoreByName("STUDENTS", Integer.parseInt(idNameScore[j][2]),idNameScore[j][1]);
-                updateScoreByID("STUDENTS", Integer.parseInt(idNameScore[j][2]),
-                        Integer.parseInt(idNameScore[j][0]),idNameScore[j][1]);
-                //Думаю так будет праввильнее, вдруг есть тески
+                //Думаю так будет правильнее, вдруг есть тески
+                int score = Integer.parseInt(idNameScore[j][2]);
+                int id = Integer.parseInt(idNameScore[j][0]);
+                String name = idNameScore[j][1];
+                int resUpdate = updateScoreByID("STUDENTS", score, id,name);
+                if (resUpdate<1)
+                    insertSql("STUDENTS", new String[]{"NAME", name}, new String[]{"SCORE", String.valueOf(score)});
+
             }
             disconnect();
         } catch (ClassNotFoundException e) {
@@ -117,10 +122,7 @@ public class WorkWithDatabase {
         String query = String.format("UPDATE '%s' SET Score = '%d' WHERE StudID = '%d' AND Name ='%s';",table,score,id,name);
         try {
             int res = statement.executeUpdate(query);
-            if (res>=1)
-                info(query);
-            else
-                insertSql("STUDENTS", new String[]{"NAME", name}, new String[]{"SCORE", String.valueOf(score)});
+            info(query);
             return res;
         } catch (SQLException e) {
             throw new RuntimeException(e);
