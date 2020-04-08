@@ -25,18 +25,13 @@ public class WorkWithDatabase {
             String[][] idNameScore;
 
             ArrayList<String> updateData  = UpdateDataFromTxt(URL + "DZ_update.txt");
-            int i = 0;
-            idNameScore = splitArrayList(updateData, i);
-            for (int j = 0; j <idNameScore.length ; j++) {
-                //updateScoreByName("STUDENTS", Integer.parseInt(idNameScore[j][2]),idNameScore[j][1]);
-                //Думаю так будет правильнее, вдруг есть тески
-                int score = Integer.parseInt(idNameScore[j][2]);
-                int id = Integer.parseInt(idNameScore[j][0]);
-                String name = idNameScore[j][1];
+            for (String updateDatum : updateData) {
+                int score = Integer.parseInt(findNWord(updateDatum,3));
+                int id = Integer.parseInt(findNWord(updateDatum,1));
+                String name = findNWord(updateDatum,2);
                 int resUpdate = updateScoreByID("STUDENTS", score, id,name);
                 if (resUpdate<1)
                     insertSql("STUDENTS", new String[]{"NAME", name}, new String[]{"SCORE", String.valueOf(score)});
-
             }
             disconnect();
         } catch (ClassNotFoundException e) {
@@ -44,17 +39,6 @@ public class WorkWithDatabase {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    }
-
-    private static String[][] splitArrayList(ArrayList<String> updateData, int i) {
-        String[][] res;
-        res = new String[countWords(updateData.get(0))-1][updateData.size()];
-        for (String updateDatum : updateData) {
-            String []temp = updateDatum.split("\\s+");
-            res[i] = temp;
-            i++;
-        }
-        return res;
     }
 
     static void connect() throws ClassNotFoundException, SQLException {
@@ -187,11 +171,42 @@ public class WorkWithDatabase {
         if(txt.length() != 0){
             count++;
             for (int i = 0; i < txt.length(); i++) {
-                if(txt.charAt(i) == ' '){
+                if(txt.charAt(i) == ' ' && txt.charAt(i+1)!=' '){
                     count++;
                 }
             }
         }
         return count;
+    }
+
+    public static String findNWord(String txt, int n){
+        int countWords =countWords(txt);
+        if (countWords==1) return txt;
+        if (n>countWords && n<=0)
+            return "";
+        else {
+            if (n==1)
+                return txt.substring(0,txt.indexOf(' ')).replace(" ","");
+            if (n==countWords)
+                return txt.substring(txt.lastIndexOf(' '),txt.length()).replace(" ","");
+            else
+                return txt.substring(indexNWord(txt,n),txt.indexOf(' ',indexNWord(txt,n))).replace(" ","");
+
+        }
+    }
+
+    public static int indexNWord(String txt, int n){
+        int score = 0;
+        if(txt.length() != 0){
+            score++;
+            for (int i = 0; i < txt.length(); i++) {
+                if(txt.charAt(i) == ' ' && txt.charAt(i+1)!=' '){
+                    score++;
+                    if (score == n)
+                        return i+1;
+                }
+            }
+        }
+        return -1;
     }
 }
