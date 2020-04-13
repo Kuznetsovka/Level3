@@ -110,7 +110,7 @@ public class ChatServer implements ServerSocketThreadListener, SocketThreadListe
     public synchronized void onReceiveString(SocketThread thread, Socket socket, String msg) {
         ClientThread client = (ClientThread) thread;
         if (client.isAuthorized()) {
-            handleAutorizedMessage(client, msg);
+            handleAuthorizedMessage(client, msg);
         } else {
             handleNonAuthorizedMessage(client, msg);
         }
@@ -154,7 +154,7 @@ public class ChatServer implements ServerSocketThreadListener, SocketThreadListe
         sendToAllAuthorizedClients(Library.getUserList(getUsers()));
     }
 
-    private void handleAutorizedMessage(ClientThread client, String msg) {
+    private void handleAuthorizedMessage(ClientThread client, String msg) {
         String[] arr = msg.split(Library.DELIMITER);
         int countSelUsers = arr.length-2;
         String[] arrUsers = new String[countSelUsers];
@@ -166,14 +166,14 @@ public class ChatServer implements ServerSocketThreadListener, SocketThreadListe
                         Library.getTypeBroadcast(client.getNickname(), arr[1]));
                 break;
             case Library.TYPE_PRIVATE_CLIENT:
-                sendToPrivateAutorizidClient(client.getNickname(),arrUsers,arr[arr.length-1]);
+                sendToPrivateAuthorizedClient(client.getNickname(),arrUsers,arr[arr.length-1]);
                 break;
             default:
                 client.sendMessage(Library.getMsgFormatError(msg));
         }
     }
 
-    private void sendToPrivateAutorizidClient(String fromNickname, String[] toNicknames, String msg) {
+    private void sendToPrivateAuthorizedClient(String fromNickname, String[] toNicknames, String msg) {
         for (String toNickname : toNicknames) {
             for (SocketThread socketThread : clients) {
                 ClientThread client = (ClientThread) socketThread;
