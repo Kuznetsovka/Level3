@@ -2,9 +2,7 @@ package lesson5;
 
 import java.util.ArrayList;
 import java.util.concurrent.*;
-import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
-
 
 public class MainClass {
     public static final int CARS_COUNT = 4;
@@ -26,6 +24,7 @@ public class MainClass {
             e.printStackTrace();
         }
         System.out.println("ВАЖНОЕ ОБЪЯВЛЕНИЕ >>> Гонка началась!!!");
+
         cars.forEach(car -> pool.submit(car::go));
 
         do{
@@ -42,7 +41,6 @@ public class MainClass {
         }
 
         System.out.println("ВАЖНОЕ ОБЪЯВЛЕНИЕ >>> Гонка закончилась!!!");
-
 
     }
 }
