@@ -2,10 +2,9 @@ package lesson5;
 
 import static lesson5.MainClass.winner;
 
+public class Car{
 
-public class Car implements Runnable{
-
-    private static int CARS_COUNT;
+    private int number;
     private Race race;
     private int speed;
     private String name;
@@ -15,11 +14,11 @@ public class Car implements Runnable{
     public int getSpeed() {
         return speed;
     }
-    public Car(Race race, int speed) {
+    public Car(Race race, int speed, int number) {
         this.race = race;
         this.speed = speed;
-        CARS_COUNT++;
-        this.name = "Участник #" + CARS_COUNT;
+        this.number = number;
+        this.name = "Участник #" + number;
     }
 
     public void infoReady(){
@@ -36,12 +35,7 @@ public class Car implements Runnable{
     public void go(){
         for (int i = 0; i < race.getStages().size(); i++) {
             race.getStages().get(i).go((this));
-            winner.getAndSet(CARS_COUNT);
         }
-    }
-
-    @Override
-    public void run() {
-        go();
+        winner.getAndSet(number);
     }
 }
