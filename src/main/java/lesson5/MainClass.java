@@ -24,7 +24,6 @@ public class MainClass {
             e.printStackTrace();
         }
         System.out.println("ВАЖНОЕ ОБЪЯВЛЕНИЕ >>> Гонка началась!!!");
-
         cars.forEach(car -> pool.submit(car::go));
 
         do{
