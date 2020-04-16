@@ -1,15 +1,16 @@
 package lesson5;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicInteger;
+
 
 public class MainClass {
     public static final int CARS_COUNT = 4;
+    protected static AtomicInteger winner = new AtomicInteger(0);
     public static final CyclicBarrier cb = new CyclicBarrier(CARS_COUNT);
     public static CountDownLatch[] cd = new CountDownLatch[CARS_COUNT];
-    public static final Semaphore smp = new Semaphore(CARS_COUNT);
     public static void main(String[] args) {
         System.out.println("ВАЖНОЕ ОБЪЯВЛЕНИЕ >>> Подготовка!!!");
         Race race = new Race(new Road(60), new Tunnel(), new Road(40));
@@ -33,6 +34,15 @@ public class MainClass {
         cars.forEach(car -> pool.submit(car::go));
 
         pool.shutdown();
+//        try {
+//            pool.awaitTermination(1,TimeUnit.MINUTES);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+        do{
+            if (winner.get()!=0)
+                System.out.println("Участник #" + winner.get() + " - WIN");
+        } while ( winner.get()==0);
         try {
             pool.awaitTermination(1,TimeUnit.MINUTES);
         } catch (InterruptedException e) {

@@ -1,14 +1,11 @@
 package lesson5;
 
-import java.util.concurrent.BrokenBarrierException;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.CyclicBarrier;
-import java.util.concurrent.atomic.AtomicBoolean;
+import static lesson5.MainClass.winner;
+
 
 public class Car implements Runnable{
-    protected static AtomicBoolean isWin = new AtomicBoolean(false);
+
     private static int CARS_COUNT;
-    private CountDownLatch cd;
     private Race race;
     private int speed;
     private String name;
@@ -36,14 +33,10 @@ public class Car implements Runnable{
 
     }
 
-    public void infoReadyDone(){
-        System.out.println(this.name  + " готов");
-    }
-
     public void go(){
         for (int i = 0; i < race.getStages().size(); i++) {
             race.getStages().get(i).go((this));
-            isWin.getAndSet(true);
+            winner.getAndSet(CARS_COUNT);
         }
     }
 
