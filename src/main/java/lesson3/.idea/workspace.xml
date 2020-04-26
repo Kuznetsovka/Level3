@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="579646e6-8fab-424c-8490-2c21b4d26f80" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../lesson3_1/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lesson2/studentBase.db" beforeDir="false" afterPath="$PROJECT_DIR$/../lesson2/studentBase.db" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../../.." />
+  </component>
+  <component name="ProjectId" id="1aIVylOgxEFSKG1kjvqubIX8bkY" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="579646e6-8fab-424c-8490-2c21b4d26f80" name="Default Changelist" comment="" />
+      <created>1586423351455</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1586423351455</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="392" y="92" key="#Notifications" timestamp="1586423981162">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state x="392" y="92" key="#Notifications/0.0.1600.860@0.0.1600.860" timestamp="1586423981162" />
+    <state x="580" y="189" key="FileChooserDialogImpl" timestamp="1586423404289">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state x="580" y="189" key="FileChooserDialogImpl/0.0.1600.860@0.0.1600.860" timestamp="1586423404289" />
+  </component>
+</project>
